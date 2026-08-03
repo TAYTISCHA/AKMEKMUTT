@@ -437,8 +437,17 @@
   }
   spawnMotes();
 
+  // แปลงค่าใดๆ (null, undefined, number, array, object) ให้เป็น string อย่างปลอดภัยเสมอ
+  function toStr(v){
+    if(v === null || v === undefined) return "";
+    if(typeof v === "string") return v;
+    if(Array.isArray(v)) return v.join(" / ");
+    if(typeof v === "object") return JSON.stringify(v);
+    return String(v);
+  }
+
   function escapeHtml(str){
-    return String(str)
+    return toStr(str)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -456,7 +465,7 @@
   }
 
   function fileExt(name){
-    const m = /\.([a-zA-Z0-9]+)$/.exec(name || "");
+    const m = /\.([a-zA-Z0-9]+)$/.exec(toStr(name));
     return m ? m[1].toUpperCase() : "PDF";
   }
 
@@ -471,7 +480,7 @@
   function groupByPath(files){
     const groups = {};
     files.forEach(f => {
-      const key = f.path || "ไม่ระบุหมวดหมู่";
+      const key = toStr(f.path) || "ไม่ระบุหมวดหมู่";
       if(!groups[key]) groups[key] = [];
       groups[key].push(f);
     });
@@ -570,8 +579,8 @@
     const qLower = q.toLowerCase();
     const filtered = qLower
       ? allFiles.filter(f =>
-          (f.name || "").toLowerCase().includes(qLower) ||
-          (f.path || "").toLowerCase().includes(qLower))
+          toStr(f.name).toLowerCase().includes(qLower) ||
+          toStr(f.path).toLowerCase().includes(qLower))
       : allFiles;
 
     animateCount(filtered.length);
