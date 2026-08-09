@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101318">
-<title>คลังชีทเรียน — ตระกูล A</title>
+<title>คลังชีทเรียน มจธ. — ตระกูล A</title>
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +25,7 @@ button,input{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--yellow);color:#221c00}
+mark{background:var(--yellow);color:#171a1f;padding:1px 4px;border-radius:4px;font-weight:700}
 .wrap{width:min(1180px,calc(100% - 32px));margin:auto}
 
 /* Top navigation */
@@ -43,16 +44,19 @@ a{color:inherit;text-decoration:none}
 .icon-btn:hover{border-color:var(--orange);color:var(--orange)}
 kbd{font:600 .64rem "IBM Plex Mono",monospace;background:#f0f2f5;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:2px 5px;color:var(--muted)}
 
-/* Hero */
-.hero{background:#111419;color:#fff;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:
+/* Hero Header */
+.hero{background:#111419;color:#fff;position:relative;z-index:2}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg::before{content:"";position:absolute;inset:0;background:
  radial-gradient(circle at 80% 15%,rgba(255,216,61,.12),transparent 28%),
  radial-gradient(circle at 10% 100%,rgba(255,75,24,.18),transparent 35%)}
-.hero-grid{position:relative;padding:58px 0 92px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:end}
+.hero-grid{position:relative;padding:58px 0 92px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:end;z-index:1}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#c9cdd3;font:600 .68rem "IBM Plex Mono",monospace;letter-spacing:1px;text-transform:uppercase}
 .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 5px rgba(255,216,61,.12)}
-h1{font-size:clamp(2.2rem,6vw,4.3rem);line-height:.98;letter-spacing:-2px;margin:18px 0 18px;font-weight:800}
-.hero-copy{max-width:600px;color:#aeb4bd;font-size:1rem;line-height:1.65;margin:0}
+h1{font-size:clamp(2rem,5vw,3.8rem);line-height:1.1;letter-spacing:-1px;margin:18px 0 18px;font-weight:800}
+h1 span{color:var(--yellow)}
+.motto-pali{font-size:clamp(1rem,2.2vw,1.35rem);color:#c9cdd3;font-weight:600;margin-bottom:6px;letter-spacing:0.5px}
+.hero-copy{max-width:600px;color:#aeb4bd;font-size:0.98rem;line-height:1.65;margin:0}
 .hero-copy strong{color:#fff}
 .hero-note{margin-top:22px;display:flex;gap:9px;align-items:center;color:#d9dde2;font-size:.8rem}
 .hero-note span{width:8px;height:8px;border-radius:50%;background:#48c987}
@@ -64,24 +68,31 @@ h1{font-size:clamp(2.2rem,6vw,4.3rem);line-height:.98;letter-spacing:-2px;margin
 .stat{background:rgba(255,255,255,.06);border-radius:14px;padding:14px}
 .stat .value{font:700 1.45rem "IBM Plex Mono",monospace;color:#fff}
 .stat .label{font-size:.72rem;color:#9ea5ae;margin-top:4px}
-.hero-search{position:absolute;left:0;right:0;bottom:-34px;z-index:3}
+
+/* Search Input Box */
+.hero-search{position:absolute;left:0;right:0;bottom:-34px;z-index:20;pointer-events:auto}
 .search{height:68px;background:#fff;border:1px solid #e3e6eb;border-radius:18px;box-shadow:var(--shadow-lg);display:flex;align-items:center;padding:0 18px;gap:12px}
 .search svg{color:#7f8791;flex:none}
 .search input{border:0;outline:0;min-width:0;flex:1;font-size:1.02rem;color:var(--ink);background:transparent}
 .search input::placeholder{color:#9da4ad}
+.search input::-webkit-search-decoration,
+.search input::-webkit-search-cancel-button,
+.search input::-webkit-search-results-button,
+.search input::-webkit-search-results-decoration{display:none}
 .search-kbd{display:flex;align-items:center;gap:5px;flex:none}
-.clear{display:none;width:30px;height:30px;border:0;border-radius:9px;background:#eef0f3;color:#6d7480}
-.search.has-value .clear{display:grid;place-items:center}
+.clear{display:none;width:30px;height:30px;border:0;border-radius:99px;background:#eef0f3;color:#6d7480;font-size:1.2rem;line-height:1;align-items:center;justify-content:center}
+.clear:hover{background:#e2e5e9;color:var(--ink)}
+.search.has-value .clear{display:flex}
 
-/* Main */
-.main{padding:78px 0 80px}
+/* Main Body */
+.main{position:relative;z-index:1;padding:78px 0 80px}
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
 .section-title{font-size:1.05rem;font-weight:800;margin:0}
 .section-sub{font-size:.76rem;color:var(--muted);margin-top:2px}
 .all-btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;color:var(--muted);font-size:.78rem;font-weight:700}
 .all-btn:hover{border-color:var(--orange);color:var(--orange)}
 
-/* Subject navigator */
+/* Subject Navigator Tiles */
 .subject-wrap{position:relative}
 .subject-row{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 15px;scrollbar-width:thin;scrollbar-color:#cfd4da transparent}
 .subject-tile{position:relative;flex:none;min-width:132px;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;text-align:left;transition:.16s ease;overflow:hidden}
@@ -94,7 +105,7 @@ h1{font-size:clamp(2.2rem,6vw,4.3rem);line-height:.98;letter-spacing:-2px;margin
 .subject-tile .bar{height:3px;background:var(--orange);position:absolute;left:0;bottom:0;width:0;transition:.2s}
 .subject-tile.active .bar{width:100%}
 
-/* Results */
+/* File Lists & Folders */
 .result-head{display:flex;align-items:end;justify-content:space-between;margin:27px 0 11px;gap:12px}
 .result-count{font:600 .68rem "IBM Plex Mono",monospace;color:var(--muted)}
 .folder{margin-top:18px;animation:rise .25s ease both}
@@ -121,7 +132,7 @@ h1{font-size:clamp(2.2rem,6vw,4.3rem);line-height:.98;letter-spacing:-2px;margin
 .go{flex:none;color:#a5abb3;transition:.12s}
 .row:hover .go{color:var(--orange);transform:translateX(3px)}
 
-/* Empty/loading */
+/* States & Placeholders */
 .state{background:#fff;border:1px dashed var(--line-strong);border-radius:18px;text-align:center;padding:70px 20px;color:var(--muted)}
 .state svg{color:var(--orange);opacity:.8}
 .state h2{font-size:1.05rem;color:var(--ink);margin:14px 0 6px}
@@ -133,7 +144,7 @@ h1{font-size:clamp(2.2rem,6vw,4.3rem);line-height:.98;letter-spacing:-2px;margin
 .skeleton-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .skel-row{height:62px}
 
-/* Floating tools */
+/* Floating Actions */
 .floating{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;flex-direction:column;gap:8px}
 .float-btn{width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:#fff;box-shadow:0 8px 24px rgba(18,24,32,.12);display:grid;place-items:center;color:#68707c}
 .float-btn:hover{color:var(--orange);border-color:#ffb39b}
@@ -144,7 +155,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#9aa1aa;text-a
 @media(max-width:820px){
  .hero-grid{grid-template-columns:1fr;padding:44px 0 80px;gap:26px}
  .hero-panel{display:none}
- h1{letter-spacing:-1.4px}
+ h1{letter-spacing:-0.5px}
 }
 @media(max-width:600px){
  .wrap{width:min(100% - 22px,1180px)}
@@ -178,10 +189,10 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#9aa1aa;text-a
 <header class="topbar">
   <div class="wrap topbar-inner">
     <div class="brand">
-      <div class="logo"><span>KS</span></div>
+      <div class="logo"><span>KM</span></div>
       <div class="brand-text">
-        <div class="brand-title">คลังชีทเรียน</div>
-        <div class="brand-sub">มจธ. · ตระกูล A</div>
+        <div class="brand-title">คลังชีทเรียน มจธ.</div>
+        <div class="brand-sub">ตระกูล A · KME ARCHIVE</div>
       </div>
     </div>
     <div class="top-actions">
@@ -196,16 +207,18 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#9aa1aa;text-a
 </header>
 
 <section class="hero">
+  <div class="hero-bg"></div>
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow"><i></i> PRIVATE STUDY LIBRARY · FAMILY A</div>
-      <h1>หาเอกสาร<br>ให้เจอในไม่กี่วินาที</h1>
-      <p class="hero-copy">ศูนย์รวมชีทเรียนที่ออกแบบให้ <strong>ค้นง่าย เปิดไว และใช้งานบนมือถือได้จริง</strong> — เลือกรหัสวิชา หรือพิมพ์ชื่อ/รหัสเพื่อเข้าถึงเอกสารทันที</p>
-      <div class="hero-note"><span></span> เชื่อมต่อคลังข้อมูลแบบเรียลไทม์</div>
+      <div class="eyebrow"><i></i> THE TRAINED MAN WINS · KMUTT KME</div>
+      <div class="motto-pali">ทนฺโต เสฏฺโฐ มนุสฺเสสุ</div>
+      <h1>ในหมู่มนุษย์<br><span>ผู้ที่ฝึกตนดีแล้ว</span> เป็นผู้ประเสริฐสุด</h1>
+      <p class="hero-copy">คติพจน์ มจธ. สู่คลังรวมชีทเรียนและเอกสารประกอบการสอน <strong>ตระกูล A (KMUTT)</strong> ที่ออกแบบให้ค้นหาง่าย เปิดไว และพร้อมใช้งานบนทุกอุปกรณ์</p>
+      <div class="hero-note"><span></span> เชื่อมต่อฐานข้อมูลคลังชีทเรียนแบบเรียลไทม์</div>
     </div>
     <div class="hero-panel">
       <div class="hero-panel-head">
-        <div class="hero-panel-title">ภาพรวมคลัง</div>
+        <div class="hero-panel-title">ภาพรวมคลังเอกสาร</div>
         <div class="live">● LIVE DATA</div>
       </div>
       <div class="stat-grid">
@@ -217,9 +230,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#9aa1aa;text-a
     <div class="hero-search">
       <div class="search" id="searchBox">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="searchInput" type="search" placeholder="ค้นหารหัสวิชา ชื่อวิชา หรือชื่อไฟล์…" autocomplete="off" inputmode="search" aria-label="ค้นหาเอกสาร">
+        <input id="searchInput" type="text" placeholder="พิมพ์รหัสวิชา ชื่อวิชา หรือชื่อไฟล์เอกสาร..." autocomplete="off" inputmode="search" aria-label="ค้นหาเอกสาร">
         <div class="search-kbd"><kbd>Ctrl</kbd><kbd>K</kbd></div>
-        <button class="clear" id="clearBtn" aria-label="ล้างคำค้นหา">×</button>
+        <button class="clear" id="clearBtn" aria-label="ล้างคำค้นหา" type="button">×</button>
       </div>
     </div>
   </div>
@@ -229,8 +242,8 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#9aa1aa;text-a
   <div class="wrap">
     <div class="toolbar">
       <div>
-        <div class="section-title">วิชาของคุณ</div>
-        <div class="section-sub">แตะเพื่อกรองเฉพาะวิชาที่ต้องการ</div>
+        <div class="section-title">หมวดหมู่วิชา</div>
+        <div class="section-sub">แตะที่รายชื่อเพื่อกรองเฉพาะวิชาที่ต้องการ</div>
       </div>
       <button class="all-btn" id="allBtn">แสดงทั้งหมด</button>
     </div>
@@ -245,7 +258,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#9aa1aa;text-a
     </div>
 
     <div class="result-head">
-      <div class="section-title">เอกสาร</div>
+      <div class="section-title">รายการเอกสาร</div>
       <div class="result-count" id="resultCount"></div>
     </div>
 
@@ -261,7 +274,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#9aa1aa;text-a
   </button>
 </div>
 
-<footer><div class="wrap">KS · KME FAMILY A · STUDY LIBRARY</div></footer>
+<footer><div class="wrap">KMUTT · KME FAMILY A · STUDY ARCHIVE</div></footer>
 
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbxz7shP023tKRqA_V57WLeQFgzQTxfFSawvGMz8KxgIz_ASsys5fwdx0GYlZO4CYKcX/exec?export=json';
@@ -279,7 +292,6 @@ const heroTypes=document.getElementById('heroTypes');
 
 let allFiles=[];
 let activeGroup="";
-let debounceTimer;
 
 function toStr(v){
   if(v===null||v===undefined)return "";
@@ -292,13 +304,25 @@ function escapeHtml(str){
   return toStr(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
 function escapeRegex(str){return str.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
-function normCode(str){return toStr(str).toLowerCase().replace(/\s+/g,"");}
-function highlight(text,rawQuery){
-  const safe=escapeHtml(text);
-  if(!rawQuery||!rawQuery.trim())return safe;
-  const pattern=new RegExp(escapeRegex(escapeHtml(rawQuery)),"gi");
-  return safe.replace(pattern,m=>`<mark>${m}</mark>`);
+
+function normStr(str){
+  return toStr(str).toLowerCase().replace(/[\s\-_.]+/g,"");
 }
+
+function highlight(text, rawQuery){
+  const safe = escapeHtml(text);
+  if(!rawQuery || !rawQuery.trim()) return safe;
+  
+  const words = rawQuery.trim().split(/\s+/).filter(Boolean);
+  if(!words.length) return safe;
+  
+  const patternStr = words.map(w => escapeRegex(escapeHtml(w))).join("|");
+  if(!patternStr) return safe;
+  
+  const pattern = new RegExp(`(${patternStr})`, "gi");
+  return safe.replace(pattern, "<mark>$1</mark>");
+}
+
 function pathParts(path){return toStr(path).split("/").map(s=>s.trim()).filter(Boolean)}
 function isCodeSegment(s){return /^[A-Za-zก-๙]{2,8}\s?\d{2,8}$/.test(toStr(s).trim())}
 function codeIndex(parts){
@@ -362,9 +386,9 @@ function renderFolders(folders,query){
   if(!folders.length){
     mainEl.innerHTML=`<div class="state">
       <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-      <h2>ยังไม่พบเอกสารที่ตรงกัน</h2>
-      <p>ลองใช้รหัสวิชา ชื่อวิชา หรือชื่อไฟล์ที่สั้นลง หรือกด “แสดงทั้งหมด”</p>
-      <button onclick="resetFilters()">ล้างตัวกรอง</button>
+      <h2>ไม่พบเอกสารที่ค้นหา</h2>
+      <p>ลองใช้รหัสวิชา หรือคำค้นหาชื่อไฟล์ที่สั้นลง หรือกด “แสดงทั้งหมด” เพื่อรีเซ็ต</p>
+      <button onclick="resetFilters()">แสดงเอกสารทั้งหมด</button>
     </div>`;
     return;
   }
@@ -388,59 +412,118 @@ function renderFolders(folders,query){
     </section>`;
   }).join("");
 }
+
 function applyFilters(){
-  const q=searchInput.value.trim(),qNorm=normCode(q),allFolders=buildFolders(allFiles);
-  let folders=allFolders;
-  if(activeGroup)folders=folders.filter(g=>g.label===activeGroup);
-  if(qNorm){
-    folders=folders.filter(g=>normCode(g.code).includes(qNorm)||normCode(g.label).includes(qNorm)||g.items.some(f=>normCode(f.name).includes(qNorm)));
+  const rawQ = searchInput.value.trim();
+  const allFolders = buildFolders(allFiles);
+  
+  const tokens = rawQ.toLowerCase().split(/\s+/).filter(Boolean).map(t => t.replace(/[\-_.]+/g, ""));
+  let folders = allFolders;
+
+  if(activeGroup){
+    folders = folders.filter(g => g.label === activeGroup);
   }
-  const fileCount=folders.reduce((sum,g)=>sum+g.items.length,0);
-  resultCount.textContent=`${fileCount.toLocaleString("th-TH")} ไฟล์ · ${folders.length.toLocaleString("th-TH")} หมวด`;
-  searchBox.classList.toggle("has-value",q.length>0);
-  renderSubjects(allFolders); renderFolders(folders,q); updateHeroStats(allFolders);
+
+  if(tokens.length > 0){
+    folders = folders.map(group => {
+      const groupTextNorm = normStr(group.code + " " + group.label);
+      const isGroupMatched = tokens.every(token => groupTextNorm.includes(token));
+
+      if(isGroupMatched) {
+        return group;
+      }
+
+      const matchedItems = group.items.filter(item => {
+        const itemTextNorm = normStr(group.label + " " + item.name);
+        return tokens.every(token => itemTextNorm.includes(token));
+      });
+
+      if(matchedItems.length > 0) {
+        return { ...group, items: matchedItems };
+      }
+
+      return null;
+    }).filter(Boolean);
+  }
+
+  const fileCount = folders.reduce((sum, g) => sum + g.items.length, 0);
+  resultCount.textContent = `${fileCount.toLocaleString("th-TH")} ไฟล์ · ${folders.length.toLocaleString("th-TH")} หมวดหมู่`;
+  searchBox.classList.toggle("has-value", rawQ.length > 0);
+
+  renderSubjects(allFolders); 
+  renderFolders(folders, rawQ); 
+  updateHeroStats(allFolders);
 }
-function resetFilters(){activeGroup="";searchInput.value="";applyFilters();searchInput.focus()}
+
+function resetFilters(){
+  activeGroup = "";
+  searchInput.value = "";
+  applyFilters();
+  searchInput.focus();
+}
+
 function showError(message){
-  subjectRow.innerHTML="";resultCount.textContent="";
-  heroFiles.textContent="—";heroFolders.textContent="—";heroTypes.textContent="—";
-  mainEl.innerHTML=`<div class="state">
+  subjectRow.innerHTML = "";
+  resultCount.textContent = "";
+  heroFiles.textContent = "—";
+  heroFolders.textContent = "—";
+  heroTypes.textContent = "—";
+  mainEl.innerHTML = `<div class="state">
     <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M9 13h6"/></svg>
-    <h2>เชื่อมต่อคลังข้อมูลไม่สำเร็จ</h2><p>${escapeHtml(message)}</p>
+    <h2>ไม่สามารถเชื่อมต่อคลังข้อมูลได้</h2><p>${escapeHtml(message)}</p>
     <button onclick="loadFiles()">ลองใหม่อีกครั้ง</button>
   </div>`;
 }
+
 async function loadFiles(){
-  mainEl.innerHTML=`<div class="skeleton-list"><div class="skel-row"></div><div class="skel-row"></div><div class="skel-row"></div></div>`;
-  subjectRow.innerHTML=`<div class="skeleton-tiles"><div class="skel-tile"></div><div class="skel-tile"></div><div class="skel-tile"></div><div class="skel-tile"></div><div class="skel-tile"></div></div>`;
-  resultCount.textContent="";
+  mainEl.innerHTML = `<div class="skeleton-list"><div class="skel-row"></div><div class="skel-row"></div><div class="skel-row"></div></div>`;
+  subjectRow.innerHTML = `<div class="skeleton-tiles"><div class="skel-tile"></div><div class="skel-tile"></div><div class="skel-tile"></div><div class="skel-tile"></div><div class="skel-tile"></div></div>`;
+  resultCount.textContent = "";
   try{
-    const res=await fetch(API_URL,{cache:"no-store"});
-    if(!res.ok)throw new Error(`เซิร์ฟเวอร์ตอบกลับสถานะ ${res.status}`);
-    const data=await res.json();
-    if(!Array.isArray(data))throw new Error("รูปแบบข้อมูลที่ได้รับไม่ถูกต้อง");
-    allFiles=data;
+    const res = await fetch(API_URL, {cache:"no-store"});
+    if(!res.ok) throw new Error(`เซิร์ฟเวอร์ตอบกลับสถานะ ${res.status}`);
+    const data = await res.json();
+    if(!Array.isArray(data)) throw new Error("รูปแบบข้อมูลที่ได้รับไม่ถูกต้อง");
+    allFiles = data;
     if(!allFiles.length){
-      heroFiles.textContent="0";heroFolders.textContent="0";heroTypes.textContent="0";subjectRow.innerHTML="";
-      mainEl.innerHTML=`<div class="state"><h2>ยังไม่มีเอกสารในคลัง</h2><p>เมื่อมีการอัปโหลดชีทใหม่ รายการจะแสดงที่นี่โดยอัตโนมัติ</p></div>`;
+      heroFiles.textContent = "0";
+      heroFolders.textContent = "0";
+      heroTypes.textContent = "0";
+      subjectRow.innerHTML = "";
+      mainEl.innerHTML = `<div class="state"><h2>ยังไม่มีเอกสารในคลัง</h2><p>เมื่อมีการอัปโหลดชีทใหม่ รายการจะแสดงที่นี่โดยอัตโนมัติ</p></div>`;
       return;
     }
     applyFilters();
-  }catch(err){showError(err.message||"ไม่สามารถเชื่อมต่อกับ API ได้")}
+  } catch(err){
+    showError(err.message || "ไม่สามารถเชื่อมต่อกับ API ได้");
+  }
 }
 
-searchInput.addEventListener("input",()=>{clearTimeout(debounceTimer);debounceTimer=setTimeout(applyFilters,100)});
-clearBtn.addEventListener("click",resetFilters);
-allBtn.addEventListener("click",resetFilters);
-document.getElementById("focusSearch").addEventListener("click",()=>searchInput.focus());
-document.getElementById("reloadBtn").addEventListener("click",loadFiles);
-document.addEventListener("keydown",e=>{
-  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();searchInput.focus();searchInput.select()}
-  if(e.key==="Escape"&&document.activeElement===searchInput){if(searchInput.value)resetFilters();else searchInput.blur()}
+// Event Listeners
+searchInput.addEventListener("input", applyFilters);
+clearBtn.addEventListener("click", resetFilters);
+allBtn.addEventListener("click", resetFilters);
+
+document.getElementById("focusSearch").addEventListener("click", () => searchInput.focus());
+document.getElementById("reloadBtn").addEventListener("click", loadFiles);
+
+document.addEventListener("keydown", e => {
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k"){
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+  if(e.key === "Escape" && document.activeElement === searchInput){
+    if(searchInput.value) resetFilters(); else searchInput.blur();
+  }
 });
-const topBtn=document.getElementById("topBtn");
-window.addEventListener("scroll",()=>{topBtn.style.display=window.scrollY>500?"grid":"none"},{passive:true});
-topBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
+  topBtn.style.display = window.scrollY > 500 ? "grid" : "none";
+}, {passive: true});
+
+topBtn.addEventListener("click", () => window.scrollTo({top: 0, behavior: "smooth"}));
 
 loadFiles();
 </script>
